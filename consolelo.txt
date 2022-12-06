@@ -1,0 +1,44 @@
+Salida de consola
+Started by user janneth.carballo
+Running as SYSTEM
+Building remotely on vmware_slave (vmware) in workspace /home/janneth/workspace/lab5
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /home/janneth/workspace/lab5/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/janny35/mod8_lab5.git # timeout=10
+Fetching upstream changes from https://github.com/janny35/mod8_lab5.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+ > git fetch --tags --force --progress -- https://github.com/janny35/mod8_lab5.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision d89984c83360ad95643d63b1120866bac4793027 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f d89984c83360ad95643d63b1120866bac4793027 # timeout=10
+Commit message: "subir archivos"
+ > git rev-list --no-walk d89984c83360ad95643d63b1120866bac4793027 # timeout=10
+[lab5] $ /bin/sh -xe /tmp/jenkins10497263307616467114.sh
++ pwd
+/home/janneth/workspace/lab5
++ whoami
+janneth
++ docker-compose up -d mongo
+Starting mongo ... 
+[1A[2K
+Starting mongo ... [32mdone[0m
+[1B+ docker-compose up -d frontend
+Pulling frontend (192.168.0.8:8082/deploy_module/docker_image_frontend:2.0.0)...
+2.0.0: Pulling from deploy_module/docker_image_frontend
+Digest: sha256:bf85109fb1f5f2d9b509657700eaa57368d306bc210609334b0beb0cdacab92d
+Status: Downloaded newer image for 192.168.0.8:8082/deploy_module/docker_image_frontend:2.0.0
+Creating lab5_frontend_1 ... 
+[1A[2K
+Creating lab5_frontend_1 ... [32mdone[0m
+[1B+ docker-compose up -d backend
+Pulling backend (192.168.0.8:8082/deploy_module/docker_imamge_backend:2.0.0)...
+2.0.0: Pulling from deploy_module/docker_imamge_backend
+Digest: sha256:60d85148865a308e5f13bd13e9b35089c657e4157f7af4c21344203c70c25a69
+Status: Downloaded newer image for 192.168.0.8:8082/deploy_module/docker_imamge_backend:2.0.0
+mongo is up-to-date
+Creating lab5_backend_1 ... 
+[1BFinished: SUCCESS
