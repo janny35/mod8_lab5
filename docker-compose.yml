@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  nexus:
+    image: sonatype/nexus3
+    volumes:
+      - 'nexus-data:/nexus-data'
+    ports:
+      - '8081:8081'
+      - '8082:8082'
+
+  jenkins:
+    image: jenkins/jenkins:latest
+    ports:
+      - '8080:8080'
+    volumes:
+      - './jenkins-data:/var/jenkins_home'
+  mongo:
+    image: mongo:4.4
+    container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: usuario_mongo
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DB: admin
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+  frontend:
+    image: 192.168.0.8:8082/deploy_module/docker_image_frontend:2.0.0
+    ports:
+      - '80:80'
+  backend:
+    image: 192.168.0.8:8082/deploy_module/docker_imamge_backend:2.0.0 
+    environment:
+      ENV DB_URL: 'mongodb://usuario_mongo:password@0.0.0.0:27017'
+      ENV DB_NAME: 'admin'
+    ports:
+      - '4000:4000'
+    links:
+      - mongo
+    command: 'npm run dev'
+
+volumes:
+  nexus-data: {}
